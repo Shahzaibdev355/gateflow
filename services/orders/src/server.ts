@@ -55,6 +55,14 @@ app.get("/:id", (req: Request, res: Response) => {
   });
 });
 
+// Public health endpoint
+app.get("/health", (_req, res) => {
+  res.json({
+    success: true,
+    message: "API Gateway is healthy",
+  });
+});
+
 const PORT = 4002;
 
 app.listen(PORT, () => {

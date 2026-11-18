@@ -9,6 +9,6 @@ function getRequiredEnv(name: string): string {
 }
 
 export const SERVICES = {
-  USERS: getRequiredEnv("USERS_SERVICE_URL"),
-  ORDERS: getRequiredEnv("ORDERS_SERVICE_URL"),
+  USERS: getRequiredEnv("USER_SERVICE_URL"),
+  ORDERS: getRequiredEnv("ORDER_SERVICE_URL"),
 } as const;
