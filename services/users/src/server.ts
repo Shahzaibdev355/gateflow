@@ -36,6 +36,13 @@ app.get("/", (req: Request, res: Response) => {
   });
 });
 
+app.get("/health", (_req, res) => {
+  res.json({
+    success: true,
+    message: "User Service is healthy",
+  });
+});
+
 app.get("/:id", (req: Request, res: Response) => {
   const userId = Number(req.params.id);
 
@@ -52,14 +59,6 @@ app.get("/:id", (req: Request, res: Response) => {
     success: true,
     service: "User Service",
     data: user,
-  });
-});
-
-// Public health endpoint
-app.get("/health", (_req, res) => {
-  res.json({
-    success: true,
-    message: "API Gateway is healthy",
   });
 });
 
