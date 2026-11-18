@@ -1,0 +1,38 @@
+
+services:
+  gateway:
+    build: .
+    command: node dist/apps/gateway/src/server.js
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      USER_SERVICE_URL: http://users:4001
+      ORDER_SERVICE_URL: http://orders:4002
+      JWT_SECRET: ${JWT_SECRET}
+      REDIS_URL: redis://redis:6379
+    depends_on:
+      - users
+      - orders
+      - redis
+    restart: unless-stopped
+
+  users:
+    build: .
+    command: node dist/services/users/src/server.js
+    restart: unless-stopped
+
+  orders:
+    build: .
+    command: node dist/services/orders/src/server.js
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+
+volumes:
+  redis_data:
