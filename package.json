@@ -4,13 +4,33 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev:gateway": "tsx watch apps/gateway/src/server.ts",
+    "dev:users": "tsx watch services/users/src/server.ts",
+    "dev:orders": "tsx watch services/orders/src/server.ts",
+    "dev:token": "tsx scripts/generate-token.ts",
+    "build": "tsc",
+    "start:gateway": "node dist/apps/gateway/src/server.js",
+    "start:users": "node dist/services/users/src/server.js",
+    "start:orders": "node dist/services/orders/src/server.js"
   },
   "keywords": [],
   "type": "commonjs",
   "devDependencies": {
     "@types/node": "^26.6.6",
+    "pino-pretty": "^13.2.0",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.10",
+    "express": "^5.3.0",
+    "helmet": "^8.3.0",
+    "http-proxy-middleware": "^4.2.2",
+    "ioredis": "^6.0.0",
+    "jose": "^6.2.17",
+    "pino": "^10.4.0",
+    "pino-http": "^11.0.0",
+    "rate-limiter-flexible": "^11.5.0"
   }
 }
